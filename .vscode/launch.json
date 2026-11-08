@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "STM32F405 ST-Link Debug",
+            "type": "cortex-debug",
+            "request": "launch",
+            "preLaunchTask": "CMake: build Debug",
+            "servertype": "openocd",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/build/Debug/foc.elf",
+            "gdbPath": "/usr/bin/gdb-multiarch",
+            "serverpath": "/usr/bin/openocd",
+            "configFiles": [
+                "interface/stlink.cfg",
+                "target/stm32f4x.cfg"
+            ],
+            "runToEntryPoint": "App_Loop"
+        }
+    ]
+}

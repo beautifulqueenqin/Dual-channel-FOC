@@ -1,0 +1,68 @@
+{
+    "tasks": [
+        {
+            "label": "CMake: configure Debug",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--preset",
+                "Debug"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "group": "none"
+        },
+        {
+            "label": "CMake: build Debug",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "--preset",
+                "Debug"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "dependsOn": "CMake: configure Debug",
+            "dependsOrder": "sequence",
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Configure and build the STM32 firmware with the Debug CMake preset."
+        },
+        {
+            "label": "STM32: flash Debug",
+            "type": "shell",
+            "command": "openocd",
+            "args": [
+                "-f",
+                "interface/stlink.cfg",
+                "-f",
+                "target/stm32f4x.cfg",
+                "-c",
+                "program ${workspaceFolder}/build/Debug/foc.elf verify reset exit"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "detail": "Flash and verify the existing Debug firmware with ST-Link."
+        },
+        {
+            "label": "STM32: build and flash Debug",
+            "dependsOn": [
+                "CMake: build Debug",
+                "STM32: flash Debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": [],
+            "detail": "Build, flash, verify, and reset the STM32 target."
+        }
+    ],
+    "version": "2.0.0"
+}

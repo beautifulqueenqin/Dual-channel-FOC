@@ -1,0 +1,21 @@
+# Build output
+build/
+*.elf
+*.hex
+*.bin
+*.map
+
+# IDE/user-local files
+.vscode/*.log
+.vscode/.cache/
+MDK-ARM/*.uvguix.*
+MDK-ARM/*.bak
+
+# Generated/debug artifacts
+*.o
+*.d
+compile_commands.json
+
+# OS files
+.DS_Store
+Thumbs.db
