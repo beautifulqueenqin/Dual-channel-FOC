@@ -44,17 +44,25 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user sources here
     App/Src/app.c
+    BSP/Src/bsp_current.c
+    BSP/Src/bsp_encoder.c
+    BSP/Src/bsp_pwm.c
     BSP/Src/bsp_safety.c
     BSP/Src/drv8301.c
+    MotorControl/Src/dual_motor.c
+    MotorControl/Src/foc_math.c
+    MotorControl/Src/foc_motor.c
+    MotorControl/Src/foc_pid.c
+
+    # Host-side unit tests are intentionally excluded from the MCU target.
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user defined include paths
     App/Inc
     BSP/Inc
+    MotorControl/Inc
 )
 
 # Add project symbols (macros)
